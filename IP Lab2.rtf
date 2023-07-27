@@ -1,0 +1,459 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1033{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\b\f0\fs24\lang9 1.Write a program to implement various blurring techniqes\par
+(Gaussian,Bilateral,mean,meadian)\par
+\b0\par
+# importing libraries\par
+import cv2\par
+import numpy as np\par
+  \par
+image = cv2.imread('D:/R.jfif')\par
+  \par
+cv2.imshow('Original Image', image)\par
+cv2.waitKey(0)\par
+  \par
+# Gaussian Blur\par
+Gaussian = cv2.GaussianBlur(image, (7, 7), 0)\par
+cv2.imshow('Gaussian Blurring', Gaussian)\par
+cv2.waitKey(0)\par
+  \par
+# Median Blur\par
+median = cv2.medianBlur(image, 5)\par
+cv2.imshow('Median Blurring', median)\par
+cv2.waitKey(0)\par
+  \par
+#Bilateral Blur\par
+bilateral = cv2.bilateralFilter(image, 9, 75, 75)\par
+cv2.imshow('Bilateral Blurring', bilateral)\par
+cv2.waitKey(0)\par
+\par
+#Mean blur/Average blur\par
+averageBlur = cv2.blur(image, (5, 5))\par
+cv2.imshow('Average blur', averageBlur)\par
+cv2.waitKey()\par
+cv2.destroyAllWindows()\b\par
+\par
+3.Write a python program to implement various bitwise operations on image\par
+(AND, OR, NOT, XOR)\par
+\par
+\b0\fs22 # creating a square of zeros using a variable\par
+import cv2\par
+import numpy as np\par
+\par
+rectangle = np.zeros((300, 300), dtype="uint8")\par
+cv2.rectangle(rectangle, (25, 25), (275, 275), 255, -1)\par
+cv2.imshow("Rectangle : ", rectangle)\par
+cv2.waitKey(0)\par
+\par
+# creating a circle of zeros using a variable\par
+circle = np.zeros((300, 300), dtype="uint8")\par
+cv2.circle(circle, (150, 150), 150, 255, -1)\par
+cv2.imshow("Circle : ", circle)\par
+cv2.waitKey(0)\par
+\par
+# the bitwise_and function executes the AND operation\par
+# on both the images\par
+bitwiseAnd = cv2.bitwise_and(rectangle, circle)\par
+cv2.imshow("AND", bitwiseAnd)\par
+cv2.waitKey(0)\par
+# the bitwise_or function executes the OR operation\par
+# on both the images\par
+bitwiseOr = cv2.bitwise_or(rectangle, circle)\par
+cv2.imshow("OR", bitwiseOr)\par
+cv2.waitKey(0)\par
+# the bitwise_xor function executes the XOR operation\par
+# on both the images\par
+bitwiseXor = cv2.bitwise_xor(rectangle, circle)\par
+cv2.imshow("XOR", bitwiseXor)\par
+cv2.waitKey(0)\par
+# the bitwise_not function executes the NOT operation\par
+# on both the images\par
+bitwiseNot = cv2.bitwise_not(rectangle, circle)\par
+cv2.imshow("NOT", bitwiseNot)\par
+cv2.waitKey(0)\par
+cv2.destroyAllWindows()\par
+\par
+\b\fs24 4. Use PIL and os library to implement the following\b0\fs22\par
+\b a. Changing File type(Extension)\fs24\par
+\par
+\b0 import os\par
+# Original file path\par
+original_file = "D:\\damaged image.jpg"\par
+\par
+# New file extension\par
+new_extension = ".png"\par
+\par
+# Change the file extension\par
+new_file = os.path.splitext(original_file)[0] + new_extension\par
+\par
+# Rename the file\par
+os.rename(original_file, new_file)\par
+\par
+# Print the updated file name\par
+print("File renamed to:", new_file)\par
+\b\fs22\par
+b. List all the files in the directory\par
+\b0 #import os module\par
+import os\par
+path='D:/'\par
+\par
+#Get all the folders in the directory\par
+dir_list=os.listdir(path)\par
+\par
+#print all the folder in the path\par
+print(" The list of folders in the path","'",path,"'are:\\n",dir_list)\par
+\par
+\b c. Looping over the image files\par
+\b0 import os\par
+import glob\par
+\par
+# Directory containing the image files\par
+directory = "D:/"\par
+\par
+# Supported image file extensions\par
+supported_extensions = ["jpg", "jpeg", "png"]\par
+\par
+# Get a list of image files in the directory\par
+image_files = glob.glob(os.path.join(directory, "*.*"))\par
+\par
+# Filter only the image files with supported extensions\par
+image_files = [file for file in image_files if file.lower().endswith(tuple(supported_extensions))]\par
+\par
+# Loop over the image files\par
+for file in image_files:\par
+    # Perform operations on each image file\par
+    # For example, you can read the image using cv2.imread(file) and process it\par
+    # ...\par
+    print("Processing:", file)\par
+\par
+# Optional: Print the total number of image files found\par
+print("Total image files:", len(image_files))\par
+\par
+\b d. Creating new Directory using OS library and saving the images in it\b0\par
+\par
+import os\par
+import cv2\par
+\par
+# Directory path for the new directory\par
+new_directory = "D:\\mydir"\par
+\par
+# Create the new directory\par
+os.makedirs(new_directory, exist_ok=True)\par
+\par
+# Process and save images\par
+image_files = ["result_out.jpg", "result.jpg", "abraham.jpg"]\par
+\par
+for file in image_files:\par
+    # Read the image\par
+    image = cv2.imread(file)\par
+\par
+    # Perform operations on the image (e.g., processing, modifications)\par
+   # Save the image to the new directory\par
+    file_name = os.path.basename(file)\par
+    save_path = os.path.join(new_directory, file_name)\par
+    cv2.imwrite(save_path, image)\par
+  print("Image saved:", save_path)\par
+\par
+\b e. Creating new multiple new multiple directories using OS library.\par
+\b0 import os\par
+\par
+# List of directory names\par
+directories = ['dir1', 'dir2', 'dir3']\par
+\par
+# Parent directory path\par
+parent_directory = 'D:/'\par
+\par
+# Create the directories\par
+for directory in directories:\par
+    directory_path = os.path.join(parent_directory, directory)\par
+    os.makedirs(directory_path, exist_ok=True)\par
+    print("Created directory:", directory_path)\par
+\b\par
+f.Convert the image in modes PIL\par
+\b0 from PIL import Image\par
+\par
+# Open the image\par
+image = Image.open("D:/R.jfif")\par
+\par
+# Convert the image to different modes\par
+grayscale_image = image.convert("L")\par
+rgb_image = image.convert("RGB")\par
+rgba_image = image.convert("RGBA")\par
+binary_image = image.convert("1")\par
+\par
+#Display the images\par
+grayscale_image.show()\par
+rgb_image.show()\par
+rgba_image.show()\par
+binary_image.show()\par
+\par
+# Save the converted images\par
+grayscale_image.save("D:/grayscale_image.jpg")\par
+rgb_image.save("D:/rgb_image.jpg")\par
+rgba_image.save("D:/rgba_image.png")\par
+binary_image.save("D:/binary_image.png")\par
+\par
+\b g. Create a program to enlist the images which is stored in folder. convert it into grayscale, rotate all the images and save it to new directory with new filename\par
+\par
+\par
+\b0 import os\par
+from PIL import Image\par
+\par
+# Folder path containing the images\par
+folder_path = "D:/"\par
+\par
+# New folder path for saving the modified images\par
+new_folder_path = "D:/mydir"\par
+\par
+# Create the new folder\par
+os.makedirs(new_folder_path, exist_ok=True)\par
+\par
+# List all image files in the folder\par
+image_files = [file for file in os.listdir(folder_path) if file.lower().endswith((".jpg", ".jpeg", ".png"))]\par
+\par
+# Process and save the images\par
+for file in image_files:\par
+    # Open the image\par
+    image_path = os.path.join(folder_path, file)\par
+    image = Image.open(image_path)\par
+\par
+    # Convert the image to grayscale\par
+    grayscale_image = image.convert("L")\par
+\par
+    # Rotate the image\par
+    rotated_image = grayscale_image.rotate(90)  # Rotate by 90 degrees (counter-clockwise)\par
+\par
+    # Save the rotated image to the new folder with a new filename\par
+    new_filename = "rotated_" + file\par
+    new_image_path = os.path.join(new_folder_path, new_filename)\par
+    rotated_image.save(new_image_path)\par
+\par
+    print("Image processed and saved:", new_image_path)\par
+\par
+\b 6.Write a python program to perform matrix transformation in OpenCV.\b0\par
+\fs24\par
+# import required libraries\par
+import cv2\par
+import numpy as np\par
+\par
+# read input image\par
+img = cv2.imread('D:/R.jfif')\par
+cv2.imshow("original", img)\par
+cv2.waitKey(0)\par
+\par
+\par
+# define transformation matrix\par
+m = np.random.randn(3,3)\par
+\par
+# apply the cv2.transform to perform matrix transformation\par
+img_tr = cv2.transform(img, m, None)\par
+\par
+# display the transformed image \par
+cv2.imshow("Transformed Image", img_tr)\par
+cv2.waitKey(0)\par
+cv2.destroyAllWindows()\par
+\par
+\par
+\par
+# define transformation matrix of only ones\par
+m = np.ones((3,3))\par
+\par
+# apply the cv2.transform to perform matrix transformation\par
+img_tr = cv2.transform(img, m, None)\par
+\par
+# display the transformed image \par
+cv2.imshow("Transformed Image", img_tr)\par
+cv2.waitKey(0)\par
+cv2.destroyAllWindows()\par
+\b\par
+6.Write a python program to apply negative transformation f an image\par
+\par
+\par
+\b0 from PIL import Image\par
+import matplotlib.pyplot as plt\par
+img=Image.open("D:/face.jfif")\par
+plt.imshow(img)\par
+plt.title("original")\par
+plt.axis('off')\par
+plt.show()\par
+ \par
+w,h=img.size\par
+for i in range(w):\par
+    for j in range(h):\par
+        r,g,b=img.getpixel((i,j))\par
+        r=255-r\par
+        g=255-g\par
+        b=255-b\par
+        img.putpixel((i,j),(r,g,b))\par
+plt.axis('off')\par
+plt.imshow(img) \par
+plt.title('negation')\par
+plt.show()\par
+\b\par
+\par
+7.Write a python program to  apply affine transformation of an image\par
+\par
+\b0 import cv2\par
+import numpy as np\par
+from matplotlib import pyplot as plt\par
+\par
+\par
+img = cv2.imread('D:/R.jfif')\par
+rows, cols, ch = img.shape\par
+\par
+pts1 = np.float32([[50, 50],\par
+\tab\tab\tab\tab [200, 50],\par
+\tab\tab\tab\tab [50, 200]])\par
+\par
+pts2 = np.float32([[10, 100],\par
+\tab\tab\tab\tab [200, 50],\par
+\tab\tab\tab\tab [100, 250]])\par
+\par
+M = cv2.getAffineTransform(pts1, pts2)\par
+dst = cv2.warpAffine(img, M, (cols, rows))\par
+\par
+plt.subplot(121)\par
+plt.imshow(img)\par
+plt.title('Input')\par
+\par
+plt.subplot(122)\par
+plt.imshow(dst)\par
+plt.title('Output')\par
+\par
+plt.show()\par
+\par
+# Displaying the image\par
+while(1):\par
+\tab\par
+\tab cv2.imshow('image', img)\par
+\tab if cv2.waitKey(20) & 0xFF == 27:\par
+\tab\tab break\par
+\tab\tab\par
+cv2.destroyAllWindows()\par
+\par
+\b 8. Write a python program to implement box filter on an image\par
+\par
+\b0 import cv2\par
+\par
+# Load the image\par
+image = cv2.imread("D:/R.jfif")\par
+\par
+# Set the kernel size for the box filter\par
+kernel_size = (7, 7)\par
+\par
+# Apply the box filter\par
+filtered_image = cv2.boxFilter(image, -1, kernel_size)\par
+\par
+# Display the original and filtered images\par
+cv2.imshow("Original Image", image)\par
+cv2.waitKey(0)\par
+\par
+cv2.imshow("Filtered Image", filtered_image)\par
+cv2.waitKey(0)\par
+cv2.destroyAllWindows()\par
+\b\par
+9. Write a python progrm to implement canny edge detection in an image\b0\fs22\par
+\par
+import cv2\par
+import matplotlib.pyplot as plt\par
+\par
+img = cv2.imread('C:/Users/User/Downloads/6.jpg', cv2.IMREAD_GRAYSCALE)\par
+\par
+plt.imshow(img, cmap='gray')\par
+# Canny Edge Detection\par
+edge = cv2.Canny(img, 90, 150)\par
+\par
+fig, ax = plt.subplots(1, 2, figsize=(18, 6), dpi=150)\par
+ax[0].imshow(img, cmap='gray')\par
+ax[1].imshow(edge, cmap='gray')\par
+\par
+\par
+\fs24\par
+\b 10. Write a python program to implement different Thresholding technique.\par
+(Binary, Inverse binary,Truncated,To zero and Inverse to zero thresholings)\par
+\b0\fs22\par
+import cv2\par
+import matplotlib.pyplot as plt\par
+\par
+def show_image(image, title):\par
+    plt.imshow(image, cmap='gray')\par
+    plt.title(title)\par
+    plt.axis('off')\par
+    plt.show()\par
+\par
+# Load the image\par
+image = cv2.imread('C:/Users/User/Downloads/abraham.jpg', 0)  # Read the image as grayscale\par
+\par
+# Apply different thresholding techniques\par
+ret, binary = cv2.threshold(image, 127, 255, cv2.THRESH_BINARY)\par
+ret, binary_inv = cv2.threshold(image, 127, 255, cv2.THRESH_BINARY_INV)\par
+ret, trunc = cv2.threshold(image, 127, 255, cv2.THRESH_TRUNC)\par
+ret, to_zero = cv2.threshold(image, 127, 255, cv2.THRESH_TOZERO)\par
+ret, to_zero_inv = cv2.threshold(image, 127, 255, cv2.THRESH_TOZERO_INV)\par
+\par
+# Display the original and thresholded images\par
+show_image(image, 'Original Image')\par
+show_image(binary, 'Binary Thresholding')\par
+show_image(binary_inv, 'Inverse Binary Thresholding')\par
+show_image(trunc, 'Truncated Thresholding')\par
+show_image(to_zero, 'To Zero Thresholding')\par
+show_image(to_zero_inv, 'Inverse To Zero Thresholding')\par
+\par
+\b\fs24 11. Write a program to detect contours in an image.\par
+\b0 import cv2\par
+import numpy as np\par
+import matplotlib.pyplot as plt\par
+\par
+img = cv2.imread('C:/Users/User/Downloads/shapes.jpg')\par
+plt.imshow(img)\par
+plt.show()\par
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)\par
+\par
+canny = cv2.Canny(gray, 30, 200)\par
+\par
+contours, hierarchy = cv2.findContours(canny,\par
+   cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)\par
+print("Number of Contours = " ,len(contours))\par
+cv2.imshow('Canny Edges', canny)\par
+\par
+cv2.drawContours(img, contours, -1, (0, 255, 0), 3)\par
+\par
+plt.imshow(img)\par
+plt.show()\par
+cv2.destroyAllWindows()\par
+\par
+\b 12.Write python program to draw differents shapes on image\par
+\par
+\b0 import cv2\par
+\par
+# Load the image\par
+image = cv2.imread("D:/R.jfif")\par
+\par
+# Draw a line\par
+start_point = (50, 50)\par
+end_point = (200, 200)\par
+color = (0, 0, 255)  # BGR color format\par
+thickness = 2\par
+cv2.line(image, start_point, end_point, color, thickness)\par
+\par
+# Draw a rectangle\par
+top_left = (200, 100)\par
+bottom_right = (300, 300)\par
+color = (0, 255, 0)  # BGR color format\par
+thickness = 3\par
+cv2.rectangle(image, top_left, bottom_right, color, thickness)\par
+\par
+# Draw a circle\par
+center = (300, 300)\par
+radius = 50\par
+color = (255, 0, 0)  # BGR color format\par
+thickness = 2\par
+cv2.circle(image, center, radius, color, thickness)\par
+\par
+# Display the image\par
+cv2.imshow("Image with Drawings", image)\par
+cv2.waitKey(0)\par
+cv2.destroyAllWindows()\fs22\par
+\par
+}
+ 
